@@ -56,7 +56,7 @@ export default function TableTracerAlumni() {
                     </tr>
                   </thead>
                   <tbody>
-                    {searcedData.map((alumni, i) => (
+                    {searcedData.length == 0 ? (<tr className="text-center"><td colSpan={7}>Data Alumni Kosong!</td></tr>) : searcedData.map((alumni, i) => (
                       <tr key={i}>
                         <td>{i + 1}</td>
                         <td>{alumni.nama}</td>

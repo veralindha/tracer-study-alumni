@@ -55,8 +55,8 @@ export default function UploadComponent() {
               <div>
                 <div className="m-2">
                   Silahkan upload file data alumni dengan ekstensi file xlxs / csv
-                  <div class="spinner-border text-light" role="status">
-                    <span class="sr-only">Loading...</span>
+                  <div className="spinner-border text-light" role="status">
+                    <span className="sr-only">Loading...</span>
                   </div>
                 </div>
                 <div className="container-fluid">
@@ -68,8 +68,8 @@ export default function UploadComponent() {
                     <button onClick={handleImport} className="btn btn-success btn-sm mb-2 mt-2">
                       <i className="fas fa-fw fa-upload"></i> Upload File
                     </button>
-                    <div class="spinner-border text-success float-right mb-2 mt-2" role="status" hidden={!isUploading}>
-                      <span class="sr-only">Loading...</span>
+                    <div className="spinner-border text-success float-right mb-2 mt-2" role="status" hidden={!isUploading}>
+                      <span className="sr-only">Loading...</span>
                     </div>
                   </div>
                 </div>
