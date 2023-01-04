@@ -10,7 +10,7 @@ export default function Login() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [role, setRole] = useState('')
- 
+
   const handleSubmit = (e) => {
     e.preventDefault()
     fetch(`/api/user/${username}-${password}`, {
@@ -49,19 +49,43 @@ export default function Login() {
       <Head>
         <title>Login - Tracer Study</title>
       </Head>
-      <div className="row justify-content-center text-center">
-        <div className="col-4">
-          <form onSubmit={handleSubmit} className="form-signin">
-            <i className="fas fa-sign-in-alt fa-7x"></i>
-            <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
-            <label htmlFor="inputEmail" className="sr-only">Email address</label>
-            <input type="text" id="inputEmail" className="form-control" placeholder="Username" value={username} onChange={e => setUsername(e.target.value)} required autoFocus />
-            <label htmlFor="inputPassword" className="sr-only">Password</label>
-            <input type="password" id="inputPassword" className="form-control" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} required />
-            <button className="btn btn-lg btn-primary btn-block" type="submit">Login</button>
-          </form>
+      <section className="section">
+        <div className="container mt-5">
+          <div className="row">
+            <div className="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
+              <div className="card card-primary">
+                <div className="card-header"><h4>Login</h4></div>
+                <div className="card-body">
+                  <form method="POST" action="#" className="needs-validation" noValidate>
+                    <div className="form-group">
+                      <label htmlFor="email">Email</label>
+                      <input id="email" type="email" className="form-control" name="email" tabIndex={1} required autofocus />
+                      <div className="invalid-feedback">
+                        Please fill in your email
+                      </div>
+                    </div>
+                    <div className="form-group">
+                      <div className="d-block">
+                        <label htmlFor="password" className="control-label">Password</label>
+                      </div>
+                      <input id="password" type="password" className="form-control" name="password" tabIndex={2} required />
+                      <div className="invalid-feedback">
+                        please fill in your password
+                      </div>
+                    </div>
+                    <div className="form-group">
+                      <button type="submit" className="btn btn-primary btn-lg btn-block" tabIndex={4}>
+                        Login
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
+
     </div>
   )
 }

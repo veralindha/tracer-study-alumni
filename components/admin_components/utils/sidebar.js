@@ -4,7 +4,7 @@ import useLoginStore from "../../../store/store"
 
 export default function Sidebar({ isActiveNavItem = 0, activeUser = '' }) {
   return (
-    <aside className="main-sidebar sidebar-light-primary elevation-4">
+    <aside className="main-sidebar sidebar-light-success elevation-4">
       {/* Brand Logo */}
       <Link href="/admin-pages/admin" className="brand-link text-center">
         <div className="font-weight-bold">Tracer Study</div>
