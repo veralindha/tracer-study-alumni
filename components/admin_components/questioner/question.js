@@ -8,9 +8,6 @@ export default function Question() {
             <button type="button" className="btn btn-tool" data-card-widget="collapse">
               <i className="fas fa-minus" />
             </button>
-            <button type="button" className="btn btn-tool" data-card-widget="remove">
-              <i className="fas fa-times" />
-            </button>
           </div>
         </div>
         {/* /.card-header */}
@@ -295,9 +292,9 @@ export default function Question() {
           </div>
         </div>
         {/* /.card-body */}
-        <div className="card-footer d-flex justify-content-center" style={{ display: 'block' }}>
-          <button className="btn btn-primary">Selanjutnya <i className="fas fa-arrow-right"></i></button>
-        </div>
+        {/* <div className="card-footer d-flex justify-content-center" style={{ display: 'block' }}>
+          <button className="btn btn-success">Selanjutnya <i className="fas fa-arrow-right"></i></button>
+        </div> */}
       </div>
 
     </div>

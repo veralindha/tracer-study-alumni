@@ -63,7 +63,7 @@ export default function Profile() {
             </div>
           </div>
           <div className="row float-right">
-            <button type='submit' className="btn btn-primary"><i className="fas fa-fw fa-sync"></i> Update</button>
+            <button type='submit' className="btn btn-success"><i className="fas fa-fw fa-sync"></i> Update</button>
           </div>
         </form>
       </Card>
