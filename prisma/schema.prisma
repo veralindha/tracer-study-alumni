@@ -1,0 +1,72 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  // provider = "postgresql"
+  // url      = env("DATABASE_URL")
+  provider = "sqlite"
+  url      = env("DEV_DATABASE_URL")
+}
+
+model users {
+  id        Int      @id @default(autoincrement())
+  name      String
+  username  String   @unique
+  password  String
+  role      String   @default("admin")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Alumnis {
+  id        Int       @id @default(autoincrement())
+  nim       String    @unique
+  nik       String
+  npwp      String?
+  nama      String
+  gender    String
+  angkatan  String?
+  lulus     String?
+  alamat    String?
+  telepon   String?
+  email     String    @unique
+  password  String
+  tracered  String    @default("false")
+  answers   Answers[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now()) @updatedAt
+}
+
+// model Questioners {
+//   id              Int         @id @default(autoincrement())
+//   questioner_name String
+//   isactive        Boolean     @default(false)
+//   questions       Questions[]
+//   createdAt       DateTime    @default(now())
+//   updatedAt       DateTime    @updatedAt
+// }
+
+// model Questions {
+//   id           Int         @id @default(autoincrement())
+//   question     String
+//   questioner   Questioners @relation(fields: [questionerId], references: [id])
+//   questionerId Int
+//   answers      Answers[]
+//   createdAt    DateTime    @default(now())
+//   updatedAt    DateTime    @updatedAt
+// }
+
+model Answers {
+  id          Int      @id @default(autoincrement())
+  answer      String
+  alumnis     Alumnis  @relation(fields: [alumnisId], references: [id])
+  alumnisId   Int
+  // questions   Questions @relation(fields: [questionsId], references: [id])
+  questionsId Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
