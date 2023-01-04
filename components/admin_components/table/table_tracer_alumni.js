@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { supabase } from "../../../libs/supabase.lib"
-import Question from "../profile/question"
+import Question from "../questioner/question"
 
 export default function TableTracerAlumni() {
   const [dataAlumni, setDataAlumni] = useState([])

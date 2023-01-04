@@ -54,14 +54,14 @@ export default function Sidebar({ isActiveNavItem = 0, activeUser = '' }) {
                 </p>
               </Link>
             </li>
-            {/* <li className="nav-item" >
+            <li className="nav-item" >
               <Link href="/admin-pages/questioner" className={`nav-link ${isActiveNavItem == 5 ? ' active' : ''}`}>
                 <i className="nav-icon fas fa-question" />
                 <p>
                   Data Questioner
                 </p>
               </Link>
-            </li> */}
+            </li>
             <li className="nav-item" >
               <Link href="/" className='nav-link text-danger'>
                 <i className="nav-icon fas fa-sign-out-alt" />
