@@ -9,11 +9,10 @@ export default function Login() {
   const router = useRouter()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const [role, setRole] = useState('')
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    fetch(`/api/user/${username}-${password}`, {
+    fetch(`/api/alumni/${username}-${password}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
@@ -26,7 +25,7 @@ export default function Login() {
             username: res.data.username,
             role: res.data.role
           })
-          router.push('/admin-pages/admin')
+          router.push('/admin-pages/questioner')
         } else {
           Swal.fire({
             icon: 'warning',
@@ -56,10 +55,10 @@ export default function Login() {
               <div className="card card-success">
                 <div className="card-header"><h4>Login Alumni</h4></div>
                 <div className="card-body">
-                  <form method="POST" action="#" className="needs-validation" noValidate>
+                  <form onSubmit={handleSubmit} className="needs-validation" noValidate>
                     <div className="form-group">
                       <label htmlFor="text">Username</label>
-                      <input id="text" type="text" className="form-control" name="text" tabIndex={1} required autofocus />
+                      <input id="text" type="text" className="form-control" name="text" value={username} onChange={(e) => setUsername(e.target.value)} tabIndex={1} required autofocus />
                       <div className="invalid-feedback">
                         Please fill in your username
                       </div>
@@ -68,9 +67,9 @@ export default function Login() {
                       <div className="d-block">
                         <label htmlFor="password" className="control-label">Password</label>
                       </div>
-                      <input id="password" type="password" className="form-control" name="password" tabIndex={2} required />
+                      <input id="password" type="password" className="form-control" name="password" value={password} onChange={(e) => setPassword(e.target.value)} tabIndex={2} required />
                       <div className="invalid-feedback">
-                        please fill in your password
+                        Please fill in your password
                       </div>
                     </div>
                     <div className="form-group">

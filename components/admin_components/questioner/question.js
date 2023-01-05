@@ -1,4 +1,14 @@
-export default function Question() {
+import { useState } from "react"
+
+export default function Question({ idAlumni }) {
+  const [jawaban1, setJawaban1] = useState('')
+  const [jawaban2, setJawaban2] = useState('')
+  const [jawaban3, setJawaban3] = useState('')
+  const [jawaban4, setJawaban4] = useState('')
+  const [jawaban5, setJawaban5] = useState('')
+  const [jawaban6, setJawaban6] = useState('')
+  const [ansQ1, setAnsQ1] = useState(true)
+  const [ansQ2, setAnsQ2] = useState(true)
   return (
     <div className="content">
       <div className="card card-default">
@@ -35,7 +45,7 @@ export default function Question() {
                       <td className="w-50">Nama Lengkap</td>
                       <td className="">:</td>
                       <td className="w-50">
-                        <input type="text" className="form-control form-control-sm " placeholder="..." disabled />
+                        <input type="text" className="form-control form-control-sm " placeholder="..."   disabled />
                       </td>
                     </tr>
                     <tr>
@@ -80,17 +90,17 @@ export default function Question() {
                       <td className="">:</td>
                       <td className="w-50">
                         <div className="form-check form-check-inline mb-1">
-                          <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" defaultValue="option1" />
+                          <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" defaultValue="true" onChange={() => setAnsQ1(!ansQ1)}/>
                           <label className="form-check-label mr-1" htmlFor="inlineRadio1">Kira-kira</label>
                         </div>
-                        <input type="number" className="form-control form-control-sm col-4 d-inline mr-1" placeholder="bulan" />
+                        <input type="number" className="form-control form-control-sm col-4 d-inline mr-1" placeholder="bulan" onChange={(e) => setJawaban1(e.target.value)} disabled={ansQ1}/>
                         bulan sebelum lulus ujian
                         <br />
                         <div className="form-check form-check-inline">
-                          <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" defaultValue="option1" />
-                          <label className="form-check-label mr-1" htmlFor="inlineRadio1">Kira-kira</label>
+                          <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" defaultValue="true" onChange={() => setAnsQ1(!ansQ1)}/>
+                          <label className="form-check-label mr-1" htmlFor="inlineRadio2">Kira-kira</label>
                         </div>
-                        <input type="number" className="form-control form-control-sm col-4 d-inline mr-1" placeholder="bulan" />
+                        <input type="number" className="form-control form-control-sm col-4 d-inline mr-1" placeholder="bulan" onChange={(e) => setJawaban1(e.target.value)} disabled={!ansQ1}/>
                         bulan sesudah lulus ujian
                       </td>
                     </tr>
@@ -100,41 +110,41 @@ export default function Question() {
                       <td className="">:</td>
                       <td className="w-50">
                         <div className="form-check form-check-inline">
-                          <input className="form-check-input" type="radio" name="inlineRadioOptions" />
-                          <label className="form-check-label mr-1" htmlFor="inlineRadio1">Biaya Sendiri / Keluarga</label>
+                          <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" onChange={() => setJawaban2('MANDIRI')}/>
+                          <label className="form-check-label mr-1" htmlFor="inlineRadio3">Biaya Sendiri / Keluarga</label>
                         </div>
                         <br />
                         <div className="form-check form-check-inline">
-                          <input className="form-check-input" type="radio" name="inlineRadioOptions" />
-                          <label className="form-check-label mr-1" htmlFor="inlineRadio1">Beasiswa ADIK</label>
+                          <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" onChange={() => setJawaban2('ADIK')}/>
+                          <label className="form-check-label mr-1" htmlFor="inlineRadio4">Beasiswa ADIK</label>
                         </div>
                         <br />
                         <div className="form-check form-check-inline">
-                          <input className="form-check-input" type="radio" name="inlineRadioOptions" />
-                          <label className="form-check-label mr-1" htmlFor="inlineRadio1">Beasiswa BIDIKMISI</label>
+                          <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio5" onChange={() => setJawaban2('BIDIKMISI')}/>
+                          <label className="form-check-label mr-1" htmlFor="inlineRadio5">Beasiswa BIDIKMISI</label>
                         </div>
                         <br />
                         <div className="form-check form-check-inline">
-                          <input className="form-check-input" type="radio" name="inlineRadioOptions" />
-                          <label className="form-check-label mr-1" htmlFor="inlineRadio1">Beasiswa PPA</label>
+                          <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio6" onChange={() => setJawaban2('PPA')}/>
+                          <label className="form-check-label mr-1" htmlFor="inlineRadio6">Beasiswa PPA</label>
                         </div>
                         <br />
                         <div className="form-check form-check-inline">
-                          <input className="form-check-input" type="radio" name="inlineRadioOptions" />
-                          <label className="form-check-label mr-1" htmlFor="inlineRadio1">Beasiswa AFIRMASI</label>
+                          <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio7" onChange={() => setJawaban2('AFIRMASI')}/>
+                          <label className="form-check-label mr-1" htmlFor="inlineRadio7">Beasiswa AFIRMASI</label>
                         </div>
                         <br />
                         <div className="form-check form-check-inline">
-                          <input className="form-check-input" type="radio" name="inlineRadioOptions" />
-                          <label className="form-check-label mr-1" htmlFor="inlineRadio1">Beasiswa Perusahaan/Swasta</label>
+                          <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio8" onChange={() => setJawaban2('SWASTA')}/>
+                          <label className="form-check-label mr-1" htmlFor="inlineRadio8">Beasiswa Perusahaan/Swasta</label>
                         </div>
                         <br />
                         <div className="form-check form-check-inline">
-                          <input className="form-check-input" type="radio" name="inlineRadioOptions" />
-                          <label className="form-check-label mr-1" htmlFor="inlineRadio1">Lainnya, tuliskan:</label>
+                          <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio9" onChange={() => setAnsQ2(!ansQ2)}/>
+                          <label className="form-check-label mr-1" htmlFor="inlineRadio9">Lainnya, tuliskan:</label>
                         </div>
                         <br />
-                        <input type="text" className="form-control form-control-sm " placeholder="..." />
+                        <input type="text" className="form-control form-control-sm " placeholder="..." disabled={ansQ2}/>
                       </td>
                     </tr>
                     <tr>
@@ -143,16 +153,16 @@ export default function Question() {
                       <td className="">:</td>
                       <td className="w-50">
                         <div className="form-check form-check-inline">
-                          <input className="form-check-input" type="radio" name="inlineRadioOptions" />
-                          <label className="form-check-label mr-1">Iya</label>
+                          <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio10" onChange={() => setJawaban3('YA')}/>
+                          <label className="form-check-label mr-1" htmlFor="inlineRadio10">Iya</label>
                         </div>
                         <br />
                         <div className="form-check form-check-inline">
-                          <input className="form-check-input" type="radio" name="inlineRadioOptions" />
-                          <label className="form-check-label mr-1">Tidak</label>
+                          <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio11"/>
+                          <label className="form-check-label mr-1" htmlFor="inlineRadio11">Tidak</label>
                         </div>
                         <br />
-                        <input type="text" className="form-control form-control-sm " placeholder="..." />
+                        <input type="text" className="form-control form-control-sm " placeholder="..." onChange={(e) => setJawaban3(e.target.value)}/>
                       </td>
                     </tr>
                     <tr>
@@ -161,28 +171,28 @@ export default function Question() {
                       <td className="">:</td>
                       <td className="w-50">
                         <div className="form-check form-check-inline">
-                          <input className="form-check-input" type="radio" name="inlineRadioOptions" />
-                          <label className="form-check-label mr-1" htmlFor="inlineRadio1">Sangat Erat</label>
+                          <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio12" onChange={() => setJawaban4('1')}/>
+                          <label className="form-check-label mr-1" htmlFor="inlineRadio12">Sangat Erat</label>
                         </div>
                         <br />
                         <div className="form-check form-check-inline">
-                          <input className="form-check-input" type="radio" name="inlineRadioOptions" />
-                          <label className="form-check-label mr-1" htmlFor="inlineRadio1">Erat</label>
+                          <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio13" onChange={() => setJawaban4('2')}/>
+                          <label className="form-check-label mr-1" htmlFor="inlineRadio13">Erat</label>
                         </div>
                         <br />
                         <div className="form-check form-check-inline">
-                          <input className="form-check-input" type="radio" name="inlineRadioOptions" />
-                          <label className="form-check-label mr-1" htmlFor="inlineRadio1">Cukup Erat</label>
+                          <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio14" onChange={() => setJawaban4('3')}/>
+                          <label className="form-check-label mr-1" htmlFor="inlineRadio14">Cukup Erat</label>
                         </div>
                         <br />
                         <div className="form-check form-check-inline">
-                          <input className="form-check-input" type="radio" name="inlineRadioOptions" />
-                          <label className="form-check-label mr-1" htmlFor="inlineRadio1">Kurang Erat</label>
+                          <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio15" onChange={() => setJawaban4('4')}/>
+                          <label className="form-check-label mr-1" htmlFor="inlineRadio15">Kurang Erat</label>
                         </div>
                         <br />
                         <div className="form-check form-check-inline">
-                          <input className="form-check-input" type="radio" name="inlineRadioOptions" />
-                          <label className="form-check-label mr-1" htmlFor="inlineRadio1">Tidak Sama Sekali</label>
+                          <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio16" onChange={() => setJawaban4('5')}/>
+                          <label className="form-check-label mr-1" htmlFor="inlineRadio16">Tidak Sama Sekali</label>
                         </div>
                       </td>
                     </tr>
@@ -192,23 +202,23 @@ export default function Question() {
                       <td className="">:</td>
                       <td className="w-50">
                         <div className="form-check form-check-inline">
-                          <input className="form-check-input" type="radio" name="inlineRadioOptions" />
-                          <label className="form-check-label mr-1" >Setingkat Lebih Tinggi</label>
+                          <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio17" onChange={() => setJawaban5('1')}/>
+                          <label className="form-check-label mr-1" htmlFor="inlineRadio17">Setingkat Lebih Tinggi</label>
                         </div>
                         <br />
                         <div className="form-check form-check-inline">
-                          <input className="form-check-input" type="radio" name="inlineRadioOptions" />
-                          <label className="form-check-label mr-1" >Tingkat yang Sama</label>
+                          <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio18" onChange={() => setJawaban5('2')}/>
+                          <label className="form-check-label mr-1" htmlFor="inlineRadio18">Tingkat yang Sama</label>
                         </div>
                         <br />
                         <div className="form-check form-check-inline">
-                          <input className="form-check-input" type="radio" name="inlineRadioOptions" />
-                          <label className="form-check-label mr-1" >Setingkat Lebih Rendah</label>
+                          <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio19" onChange={() => setJawaban5('3')}/>
+                          <label className="form-check-label mr-1" htmlFor="inlineRadio19">Setingkat Lebih Rendah</label>
                         </div>
                         <br />
                         <div className="form-check form-check-inline">
-                          <input className="form-check-input" type="radio" name="inlineRadioOptions" />
-                          <label className="form-check-label mr-1" >Tidak Perlu Pendidikan Tinggi</label>
+                          <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio20" onChange={() => setJawaban5('4')}/>
+                          <label className="form-check-label mr-1" htmlFor="inlineRadio20">Tidak Perlu Pendidikan Tinggi</label>
                         </div>
                       </td>
                     </tr>
@@ -218,7 +228,7 @@ export default function Question() {
                       <td className="">:</td>
                       <td className="w-50">
                         Rp.
-                        <input type="number" className="form-control col-8 form-control-sm d-inline" />
+                        <input type="number" className="form-control col-8 form-control-sm d-inline" value={jawaban6} onChange={(e) => setJawaban6(e.target.value)}/>
                       </td>
                     </tr>
                     {/* <tr>
