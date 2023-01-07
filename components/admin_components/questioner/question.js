@@ -302,9 +302,9 @@ export default function Question({ idAlumni }) {
           </div>
         </div>
         {/* /.card-body */}
-        {/* <div className="card-footer d-flex justify-content-center" style={{ display: 'block' }}>
-          <button className="btn btn-success">Selanjutnya <i className="fas fa-arrow-right"></i></button>
-        </div> */}
+        <div className="card-footer d-flex justify-content-center" style={{ display: 'block' }}>
+          <button className="btn btn-success">Simpan <i className="fas fa-save"></i></button>
+        </div>
       </div>
 
     </div>
