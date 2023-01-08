@@ -31,6 +31,7 @@ model Alumnis {
   gender    String
   angkatan  String?
   lulus     String?
+  prodi     String?
   alamat    String?
   telepon   String?
   email     String    @unique
@@ -61,12 +62,11 @@ model Alumnis {
 // }
 
 model Answers {
-  id          Int      @id @default(autoincrement())
-  answer      String
-  alumnis     Alumnis  @relation(fields: [alumnisId], references: [id])
-  alumnisId   Int
-  // questions   Questions @relation(fields: [questionsId], references: [id])
-  questionsId Int
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id            Int      @id @default(autoincrement())
+  answer        String
+  alumnis       Alumnis  @relation(fields: [alumnisId], references: [id])
+  alumnisId     Int
+  question_code String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 }
