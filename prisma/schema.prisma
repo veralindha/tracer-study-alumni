@@ -68,5 +68,5 @@ model Answers {
   alumnisId     Int
   question_code String
   createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  updatedAt     DateTime @default(now())
 }

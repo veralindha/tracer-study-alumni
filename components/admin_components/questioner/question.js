@@ -18,7 +18,9 @@ export default function Question({ idAlumni }) {
     return data.data
   }
 
-  const handleGetAnswer = async () => { }
+  const handleGetAnswer = async () => {
+    
+  }
 
   const handlePostAnswer = () => {
     if (jawaban1 === '' && jawaban2 === '' && jawaban3 === '' && jawaban4 === '' && jawaban5 === '' && jawaban6 === '') {
