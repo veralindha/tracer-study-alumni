@@ -239,11 +239,7 @@ export default function Question({ idAlumni }) {
                           <label className="form-check-label mr-1" htmlFor="inlineRadio11">Tidak</label>
                         </div>
                         <br />
-<<<<<<< HEAD
-                        <input type="text" className="form-control form-control-sm " placeholder="Pekerjaan" onChange={(e) => setJawaban3(e.target.value)} />
-=======
                         <input type="text" className="form-control form-control-sm " placeholder="Pekerjaan" onChange={(e) => setJawaban3(e.target.value)}/>
->>>>>>> d27a465320d13598697e76b58f81cf99c41e0c4c
                       </td>
                     </tr>
                     <tr>
