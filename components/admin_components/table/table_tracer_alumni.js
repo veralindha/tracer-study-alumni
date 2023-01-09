@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react"
 import { supabase } from "../../../libs/supabase.lib"
 import Question from "../questioner/question"
+import QuestionNew from "../questioner/question_new"
 
 export default function TableTracerAlumni() {
   const [dataAlumni, setDataAlumni] = useState([])
-  const [alumni, setAlumni] = useState(0)
+  const [alumni, setAlumni] = useState('')
   const [search, setSearch] = useState('')
   const searcedData = dataAlumni.filter((alumnni) => alumnni.nama.toLowerCase().includes(search.toLowerCase()))
   const fetchAlumnis = async () => {
@@ -70,7 +71,7 @@ export default function TableTracerAlumni() {
                         <td className="text-center">
                           <div>
                             {/* Button trigger modal */}
-                            <button onClick={() => setAlumni(alumni.id)} type="button" className="btn btn-sm btn-success" data-toggle="modal" data-target="#detailData">
+                            <button id={`${alumni.nim}-${alumni.nim}`} onClick={() => setAlumni(`${alumni.nim}-${alumni.nim}`)} type="button" className="btn btn-sm btn-success" data-toggle="modal" data-target="#detailData">
                               <i className="fas fa-info"></i>
                             </button>
                           </div>
@@ -90,7 +91,7 @@ export default function TableTracerAlumni() {
                         </button>
                       </div>
                       <div className="modal-body">
-                        <Question idAlumni={alumni}/>
+                        <QuestionNew idAlumni={alumni}/>
                       </div>
                     </div>
                   </div>
