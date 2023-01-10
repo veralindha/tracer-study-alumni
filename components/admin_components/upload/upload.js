@@ -55,9 +55,6 @@ export default function UploadComponent() {
               <div>
                 <div className="m-2">
                   Silahkan upload file data alumni dengan ekstensi file xlxs / csv
-                  <div className="spinner-border text-light" role="status">
-                    <span className="sr-only">Loading...</span>
-                  </div>
                 </div>
                 <div className="container-fluid">
                   <div className="custom-file">
