@@ -3,6 +3,7 @@ import { useState } from "react"
 import Head from "next/head"
 import Swal from "sweetalert2"
 import useLoginStore from "../store/store"
+import { setCookie } from "../libs/cookies.lib"
 
 
 export default function Login() {
@@ -12,20 +13,22 @@ export default function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    fetch(`/api/alumni/${username}-${password}`, {
-      method: 'GET',
+    fetch(`/api/alumni/auth`, {
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json'
-      }
+      },
+      body: JSON.stringify({nim: username, password: password})
     })
       .then(result => result.json())
       .then(res => {
         if (res.message === 'success') {
           useLoginStore.setState({
-            username: res.data.username,
+            username: res.data.nim,
             role: res.data.role
           })
-          router.push('/admin-pages/questioner')
+          setCookie('user', JSON.stringify({isLoggedIn: true, username: res.data.nim, role: 'alumni'}), 1)
+          router.push('/admin-pages/profile')
         } else {
           Swal.fire({
             icon: 'warning',
@@ -40,6 +43,7 @@ export default function Login() {
           title: 'Oops...',
           text: "Can't connect to server...",
         })
+        console.log(err)
       })
   }
 
@@ -58,7 +62,7 @@ export default function Login() {
                   <form onSubmit={handleSubmit} className="needs-validation" noValidate>
                     <div className="form-group">
                       <label htmlFor="text">Username</label>
-                      <input id="text" type="text" className="form-control" name="text" value={username} onChange={(e) => setUsername(e.target.value)} tabIndex={1} required autofocus />
+                      <input id="text" type="text" className="form-control" name="text" value={username} onChange={(e) => setUsername(e.target.value)} tabIndex={1} required autoFocus />
                       <div className="invalid-feedback">
                         Please fill in your username
                       </div>

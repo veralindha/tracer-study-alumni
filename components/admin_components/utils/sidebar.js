@@ -1,8 +1,35 @@
 import Image from "next/image"
 import Link from "next/link"
+import { useRouter } from "next/router"
+import { useEffect, useState } from "react"
+import Swal from "sweetalert2"
+import { getCookie, removeCookie } from "../../../libs/cookies.lib"
 import useLoginStore from "../../../store/store"
 
 export default function Sidebar({ isActiveNavItem = 0, activeUser = '' }) {
+  const [user, setUser] = useState({})
+  const router = useRouter()
+
+  const handleLogout = () => {
+    Swal.fire({
+      showConfirmButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Keluar',
+      text: 'Yakin keluar?',
+      icon: 'question'
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        removeCookie('user')
+        router.push('/')
+      }
+    })
+  }
+
+  useEffect(() => {
+    setUser(getCookie('user'))
+    user == {} ? router.push('/login_admin') : null
+  }, [])
   return (
     <aside className="main-sidebar sidebar-light-success elevation-4">
       {/* Brand Logo */}
@@ -15,14 +42,14 @@ export default function Sidebar({ isActiveNavItem = 0, activeUser = '' }) {
         <nav className="mt-2">
           <ul className="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li className="nav-item" >
-              <Link href="/admin-pages/profile" className={`nav-link ${isActiveNavItem == 0 ? ' active' : ''}`}>
+              <Link href={`/${user.role === 'alumni' ? 'alumni': 'admin-pages'}/profile`} className={`nav-link ${isActiveNavItem == 0 ? ' active' : ''}`}>
                 <i className="nav-icon fas fa-user" />
                 <p>
                   Profile
                 </p>
               </Link>
             </li>
-            <li className="nav-item" >
+            <li className="nav-item" hidden={user.role === 'alumni' ? true : false}>
               <Link href="/admin-pages/admin" className={`nav-link ${isActiveNavItem == 1 ? ' active' : ''}`}>
                 <i className="nav-icon fas fa-home" />
                 <p>
@@ -30,7 +57,7 @@ export default function Sidebar({ isActiveNavItem = 0, activeUser = '' }) {
                 </p>
               </Link>
             </li>
-            <li className="nav-item" >
+            <li className="nav-item" hidden={user.role === 'admin' ? false : true}>
               <Link href="/admin-pages/tambah-user-admin" className={`nav-link ${isActiveNavItem == 2 ? ' active' : ''}`}>
                 <i className="nav-icon fas fa-users-cog" />
                 <p>
@@ -38,7 +65,7 @@ export default function Sidebar({ isActiveNavItem = 0, activeUser = '' }) {
                 </p>
               </Link>
             </li>
-            <li className="nav-item" >
+            <li className="nav-item" hidden={user.role === 'admin'? false : true}>
               <Link href="/admin-pages/upload" className={`nav-link ${isActiveNavItem == 3 ? ' active' : ''}`}>
                 <i className="nav-icon fas fa-upload" />
                 <p>
@@ -46,7 +73,7 @@ export default function Sidebar({ isActiveNavItem = 0, activeUser = '' }) {
                 </p>
               </Link>
             </li>
-            <li className="nav-item" >
+            <li className="nav-item" hidden={user.role === 'alumni' ? true : false}>
               <Link href="/admin-pages/alumni" className={`nav-link ${isActiveNavItem == 4 ? ' active' : ''}`}>
                 <i className="nav-icon fas fa-clock" />
                 <p>
@@ -54,19 +81,19 @@ export default function Sidebar({ isActiveNavItem = 0, activeUser = '' }) {
                 </p>
               </Link>
             </li>
-            <li className="nav-item" >
-              <Link href="/admin-pages/questioner" className={`nav-link ${isActiveNavItem == 5 ? ' active' : ''}`}>
+            <li className="nav-item" hidden={user.role === 'alumni' ? false : true}>
+              <Link href={`/alumni/questioner`} className={`nav-link ${isActiveNavItem == 5 ? ' active' : ''}`}>
                 <i className="nav-icon fas fa-question" />
                 <p>
-                  Data Questioner
+                  Kuisioner
                 </p>
               </Link>
             </li>
-            <li className="nav-item" >
-              <Link href="/" className='nav-link text-danger'>
+            <li className="nav-item" onClick={() => handleLogout()}>
+              <Link href="#" className='nav-link text-danger'>
                 <i className="nav-icon fas fa-sign-out-alt" />
                 <p>
-                  Logout
+                  Keluar
                 </p>
               </Link>
             </li>

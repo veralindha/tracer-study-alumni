@@ -1,8 +1,10 @@
-import { useState } from 'react'
-import Card from '../utils/card'
+import { useEffect, useState } from 'react'
+import Card from '../admin_components/utils/card'
 import Swal from 'sweetalert2'
+import {getCookie} from '../../../libs/cookies.lib'
 
 export default function Profile() {
+  const [user, setUser] = useState({})
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const handleUpdate = (e) => {
@@ -11,10 +13,10 @@ export default function Profile() {
       username: username,
       password: password
     }
-    fetch('/api/user/update', {
+    fetch(`/api/${user.role == 'alumni' ? 'alumni':'user'}/update`, {
       method: 'PUT',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(updateData)
     })
@@ -42,6 +44,10 @@ export default function Profile() {
         })
       })
   }
+
+  useEffect(() => {
+    setUser(getCookie('user'))
+  }, [])
   return (
     <section className="content">
       <Card cardTitle="Update Profile" cardIcon="fa-user">
@@ -51,7 +57,7 @@ export default function Profile() {
               <div className="col-md-6">
                 <div>
                   <label htmlFor="username">Username</label>
-                  <input type="text" className="form-control form-control-sm text-left" id="username" value={username} onChange={(e) => setUsername(e.target.value)} required />
+                  <input type="text" className="form-control form-control-sm text-left" id="username" value={username} onChange={(e) => setUsername(e.target.value)} disabled/>
                 </div>
               </div>
               <div className="col-md-6">

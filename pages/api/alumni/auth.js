@@ -1,22 +1,22 @@
 import { prisma } from "../../../libs/prisma.lib"
 
 export default async function handler(req, res) {
-  if (req.method === 'GET') {
-    const { id } = req.query
+  if (req.method === 'POST') {
+    const { nim, password } = req.body
     await prisma.alumnis.findUnique({
       where: {
-        nim: id,
+        nim: nim,
       }
     })
       .then((alumni) => {
-        if(alumni != null){
+        if(alumni != null && alumni.password === password){
           res.status(200).json({
             message: 'success',
             data: alumni
           })
         } else {
-          res.status(404).json({
-            message: 'not found',
+          res.status(401).json({
+            message: 'unauthorized',
             data: null
           })
         }

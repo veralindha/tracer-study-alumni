@@ -3,9 +3,9 @@ import {prisma} from "../../../libs/prisma.lib"
 export default async function handler(req, res) {
   if (req.method === 'PUT') {
     const { username, password } = req.body
-    await prisma.users.update({
+    await prisma.alumnis.update({
       where: {
-        username: username
+        nim: username
       },
       data: {
         password: password

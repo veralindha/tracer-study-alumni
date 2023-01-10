@@ -71,7 +71,7 @@ export default function TableTracerAlumni() {
                         <td className="text-center">
                           <div>
                             {/* Button trigger modal */}
-                            <button id={`${alumni.nim}-${alumni.nim}`} onClick={() => setAlumni(`${alumni.nim}-${alumni.nim}`)} type="button" className="btn btn-sm btn-success" data-toggle="modal" data-target="#detailData">
+                            <button id={`${alumni.nim}`} onClick={() => setAlumni(`${alumni.nim}`)} type="button" className="btn btn-sm btn-success" data-toggle="modal" data-target="#detailData">
                               <i className="fas fa-info"></i>
                             </button>
                           </div>

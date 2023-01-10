@@ -437,7 +437,7 @@ export class QuestionNew extends Component {
           </div>
           {/* /.card-body */}
           <div className="card-footer d-flex justify-content-center" style={{ display: 'block' }}>
-            <button onClick={this.handlePostAnswer} className="btn btn-success">Simpan <i className="fas fa-save"></i></button>
+            {/* <button onClick={this.handlePostAnswer} className="btn btn-success">Simpan <i className="fas fa-save"></i></button> */}
           </div>
         </div>
 
