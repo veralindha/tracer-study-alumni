@@ -1,37 +1,35 @@
-import { prisma } from "../../libs/prisma.lib"
+// import { prisma } from "../../libs/prisma.lib"
+import { PrismaClient } from "@prisma/client"
 
 export default async function handler(req, res) {
   try {
     if (req.method === 'POST') {
-      let data = req.body.alumnis
-      for (let i = 0; i < data.length; i++) {
-        await prisma.alumnis.create({
-          data: {
-            nim: data[i].nim,
-            nik: data[i].no_ktp,
-            npwp: '-',
-            nama: data[i].nama_mhs,
-            gender: data[i].kelamin,
-            angkatan: data[i].angkatan,
-            lulus: data[i].thn_lulus,
-            alamat: data[i].alamat,
-            telepon: data[i].tlp_saya,
-            email: data[i].email,
-            password: data[i].nim,
-          }
-        }).catch((error) => {
-          return res.status(500).json({
-            message: error.message
-          })
-        })
-      }
-      res.status(201).json({
-        message: 'success'
+      let data = req.body.alumnis.map((alumni) => {
+        return {
+          nim: alumni.nim,
+          nik: alumni.no_ktp? alumni.no_ktp : '-',
+          npwp: '-',
+          nama: alumni.nama_mhs,
+          gender: alumni.kelamin,
+          angkatan: alumni.angkatan,
+          lulus: alumni.thn_lulus,
+          alamat: alumni.alamat,
+          telepon: alumni.tlp_saya,
+          email: alumni.email,
+          password: alumni.nim
+        }
       })
+      const prisma = new PrismaClient()
+      const insert = await prisma.alumnis.createMany({
+        data: data,
+        skipDuplicates: true
+      })
+      res.status(201).json({message: 'success', data: insert})
     }
   } catch (error) {
     res.status(500).json({
-      message: "Error occured, contact your Administrator for more information."
+      message: "Error occured, contact your Administrator for more information.",
+      error: error.message
     })
   }
 }

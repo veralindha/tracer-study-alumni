@@ -40,6 +40,7 @@ export default function UploadComponent() {
       .then((res) => res.json())
       .then((data) => {
         Swal.fire('Success', 'Data berhasil diunggah!', 'success')
+        console.log(data)
       })
       .catch((error) => {
         Swal.fire('Error', error.message, 'error')

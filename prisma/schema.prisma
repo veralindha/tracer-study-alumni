@@ -8,8 +8,10 @@ generator client {
 datasource db {
   // provider = "postgresql"
   // url      = env("DATABASE_URL")
-  provider = "sqlite"
-  url      = env("DEV_DATABASE_URL")
+  provider = "mysql"
+  url      = env("LOCAL_DATABASE_URL")
+  // provider = "sqlite"
+  // url      = env("DEV_DATABASE_URL")
 }
 
 model users {
@@ -41,25 +43,6 @@ model Alumnis {
   createdAt DateTime  @default(now())
   updatedAt DateTime  @default(now()) @updatedAt
 }
-
-// model Questioners {
-//   id              Int         @id @default(autoincrement())
-//   questioner_name String
-//   isactive        Boolean     @default(false)
-//   questions       Questions[]
-//   createdAt       DateTime    @default(now())
-//   updatedAt       DateTime    @updatedAt
-// }
-
-// model Questions {
-//   id           Int         @id @default(autoincrement())
-//   question     String
-//   questioner   Questioners @relation(fields: [questionerId], references: [id])
-//   questionerId Int
-//   answers      Answers[]
-//   createdAt    DateTime    @default(now())
-//   updatedAt    DateTime    @updatedAt
-// }
 
 model Answers {
   id            Int      @id @default(autoincrement())
