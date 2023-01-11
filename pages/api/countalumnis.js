@@ -14,7 +14,27 @@ export default async function handler(req, res) {
           where: {
             tracered: 'false'
           }
-        })
+        }),
+        alumnis19: await prisma.alumnis.count({
+          where: {
+            angkatan: '2019'
+          }
+        }),
+        alumnis20: await prisma.alumnis.count({
+          where: {
+            angkatan: '2020'
+          }
+        }),
+        alumnis21: await prisma.alumnis.count({
+          where: {
+            angkatan: '2021'
+          }
+        }),
+        alumnis22: await prisma.alumnis.count({
+          where: {
+            angkatan: '2022'
+          }
+        }),
       }
       res.status(200).json({
         message: 'available',

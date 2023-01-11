@@ -28,7 +28,7 @@ export default function Login() {
             role: res.data.role
           })
           setCookie('user', JSON.stringify({isLoggedIn: true, username: res.data.nim, role: 'alumni'}), 1)
-          router.push('/admin-pages/profile')
+          router.push('/alumni/profile')
         } else {
           Swal.fire({
             icon: 'warning',
