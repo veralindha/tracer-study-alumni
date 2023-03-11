@@ -1,3 +1,5 @@
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import Question from "../../../components/admin_components/questioner/question"
 import ContentHeader from "../../../components/admin_components/utils/content-header";
 import Layout from "../../../components/admin_components/utils/layout";
