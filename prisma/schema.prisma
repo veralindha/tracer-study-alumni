@@ -33,6 +33,7 @@ model Alumnis {
   gender    String
   angkatan  String?
   lulus     String?
+  ipk       String?
   prodi     String?
   alamat    String?
   telepon   String?
