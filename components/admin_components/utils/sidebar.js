@@ -89,6 +89,30 @@ export default function Sidebar({ isActiveNavItem = 0, activeUser = '' }) {
                 </p>
               </Link>
             </li>
+            <li className="nav-item" hidden={user.role === 'admin' ? false : true}>
+              <Link href={`/admin-pages/loker`} className={`nav-link ${isActiveNavItem == 6 ? ' active' : ''}`}>
+                <i className="nav-icon fas fa-info" />
+                <p>
+                  Info Loker
+                </p>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link href={`/admin-pages/berkas`} className={`nav-link ${isActiveNavItem == 7 ? ' active' : ''}`}>
+                <i className="nav-icon fas fa-sticky-note" />
+                <p>
+                  Berkas Lamaran
+                </p>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link href={`/admin-pages/statistik`} className={`nav-link ${isActiveNavItem == 8 ? ' active' : ''}`}>
+                <i className="nav-icon fas fa-sort-amount-up" />
+                <p>
+                  Statistik Loker
+                </p>
+              </Link>
+            </li>
             <li className="nav-item" onClick={() => handleLogout()}>
               <Link href="#" className='nav-link text-danger'>
                 <i className="nav-icon fas fa-sign-out-alt" />
