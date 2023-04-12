@@ -57,12 +57,13 @@ model Answers {
 }
 
 model Loker {
-  id        Int      @id @default(autoincrement())
-  nama      String
-  deskripsi String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now()) @updatedAt
-  lamarans  Lamaran[]
+  id          Int       @id @default(autoincrement())
+  nama        String
+  persyaratan String
+  image       String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @default(now()) @updatedAt
+  lamarans    Lamaran[]
 }
 
 model Lamaran {

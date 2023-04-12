@@ -1,5 +1,10 @@
 import Image from "next/image";
+import { useState } from "react";
 export default function InputLoker() {
+  const [namaInstansi, setNamaInstansi] = useState("");
+  const [persyaratan, setPersyaratan] = useState("");
+  // TODO: Add function to add new loker
+  // TODO: Add function to upload image
   return (
     <>
       <section className="trending-product section">
@@ -47,7 +52,7 @@ export default function InputLoker() {
                               <input
                                 type="text"
                                 className="form-control form-control-sm"
-                                placeholder="Nama Produk"
+                                placeholder="Nama Instansi atau Perusahaan"
                                 // value={nameProduct}
                                 // onChange={(e) => setNameProduct(e.target.value)}
                               />
