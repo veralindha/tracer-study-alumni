@@ -1,10 +1,84 @@
 import Image from "next/image";
 import { useState } from "react";
+import Swal from "sweetalert2";
 export default function InputLoker() {
   const [namaInstansi, setNamaInstansi] = useState("");
   const [persyaratan, setPersyaratan] = useState("");
+  const [image, setImage] = useState("");
   // TODO: Add function to add new loker
+  const handleCreateLoker = () => {
+    const inputData = {
+      namaInstansi,
+      persyaratan,
+      image,
+    }
+    fetch("/api/loker", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(inputData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if(data.status === 200){
+          Swal.fire({
+            title: "Success",
+            text: "Loker berhasil ditambahkan",
+            icon: "success",
+            confirmButtonText: "Ok",
+          });
+        }else{
+          Swal.fire({
+            title: "Error",
+            text: "Loker gagal ditambahkan",
+            icon: "error",
+            confirmButtonText: "Ok",
+          });
+        }
+      })
+      .catch((err) => {
+        Swal.fire({
+          title: "Error",
+          text: "Loker gagal ditambahkan, cek browser console untuk informati lebih lanjut.",
+          icon: "error",
+          confirmButtonText: "Ok",
+        });
+        console.log(err);
+      });
+  };
   // TODO: Add function to upload image
+  const handleUploadImage = (e) => {
+    const file = e.target.files[0];
+    let formdata = new FormData();
+    formdata.append("image", file);
+    fetch("/api/loker/imageupload", {
+      method: "POST",
+      body: formdata,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if(data.status === 201){
+          setImage(data.data);
+        }else{
+          Swal.fire({
+            title: "Error",
+            text: "Upload image gagal",
+            icon: "error",
+            confirmButtonText: "Ok",
+          });
+        }
+      })
+      .catch((err) => {
+        Swal.fire({
+          title: "Error",
+          text: "Upload image gagal, cek browser console untuk informati lebih lanjut.",
+          icon: "error",
+          confirmButtonText: "Ok",
+        });
+        console.log(err);
+      });
+  };
   return (
     <>
       <section className="trending-product section">
