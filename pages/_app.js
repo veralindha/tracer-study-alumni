@@ -13,6 +13,8 @@ import '../public/dist/css/boxicons.min.css'
 import { Source_Sans_Pro } from '@next/font/google'
 import { CookiesProvider } from 'react-cookie'
 
+
+
 const SourceSansPro = Source_Sans_Pro({
   weight: ['300', '400', '700']
 });
