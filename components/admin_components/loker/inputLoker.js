@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 export default function InputLoker() {
   const [namaInstansi, setNamaInstansi] = useState("");
   const [persyaratan, setPersyaratan] = useState("");
+  const [previmage, setPrevImage] = useState("/dist/img/LogoIndomaret.png");
   const [image, setImage] = useState("");
   // TODO: Add function to add new loker
   const handleCreateLoker = () => {
@@ -12,7 +13,7 @@ export default function InputLoker() {
       persyaratan,
       image,
     }
-    fetch("/api/loker", {
+    fetch("/api/loker/create", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -21,7 +22,8 @@ export default function InputLoker() {
     })
       .then((res) => res.json())
       .then((data) => {
-        if(data.status === 200){
+        console.log(data)
+        if(data.message === "success"){
           Swal.fire({
             title: "Success",
             text: "Loker berhasil ditambahkan",
@@ -47,38 +49,17 @@ export default function InputLoker() {
         console.log(err);
       });
   };
-  // TODO: Add function to upload image
-  const handleUploadImage = (e) => {
-    const file = e.target.files[0];
-    let formdata = new FormData();
-    formdata.append("image", file);
-    fetch("/api/loker/imageupload", {
-      method: "POST",
-      body: formdata,
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if(data.status === 201){
-          setImage(data.data);
-        }else{
-          Swal.fire({
-            title: "Error",
-            text: "Upload image gagal",
-            icon: "error",
-            confirmButtonText: "Ok",
-          });
-        }
-      })
-      .catch((err) => {
-        Swal.fire({
-          title: "Error",
-          text: "Upload image gagal, cek browser console untuk informati lebih lanjut.",
-          icon: "error",
-          confirmButtonText: "Ok",
-        });
-        console.log(err);
-      });
+  const handleImage = (e) => {
+    e.preventDefault();
+    let reader = new FileReader();
+    let file = e.target.files[0];
+    reader.onload = () => {
+      setImage(reader.result);
+      setPrevImage(reader.result);
+    }
+    reader.readAsDataURL(file);
   };
+  
   return (
     <>
       <section className="trending-product section">
@@ -98,18 +79,21 @@ export default function InputLoker() {
                   <div className="col-lg-4 col-md-4 col-sm-12">
                     <div className="product-image">
                       <Image
-                        src="/dist/img/LogoIndomaret.png"
+                        src={previmage}
                         className="h-auto w-auto"
                         width={300}
                         height={300}
                         alt="#"
+                        id="loker-image-preview"
                       />
                     </div>
                     <div className="custom-file">
                       <input
                         type="file"
                         className="custom-file-input"
-                        id="customFile"
+                        id="source"
+                        name="source"
+                        onChange={(e) => handleImage(e)}
                       />
                       <label className="custom-file-label" htmlFor="customFile">
                         Choose file
@@ -127,8 +111,8 @@ export default function InputLoker() {
                                 type="text"
                                 className="form-control form-control-sm"
                                 placeholder="Nama Instansi atau Perusahaan"
-                                // value={nameProduct}
-                                // onChange={(e) => setNameProduct(e.target.value)}
+                                value={namaInstansi}
+                                onChange={(e) => setNamaInstansi(e.target.value)}
                               />
                             </div>
                           </div>
@@ -136,9 +120,9 @@ export default function InputLoker() {
                             <div className="form-group col-sm-12">
                               <label>Persyaratan</label>
                               <textarea
-                                class="form-control"
-                                // value={description}
-                                // onChange={(e) => setDescription(e.target.value)}
+                                className="form-control"
+                                value={persyaratan}
+                                onChange={(e) => setPersyaratan(e.target.value)}
                                 placeholder="Masukan Persyaratan Loker"
                               />
                             </div>
@@ -147,7 +131,7 @@ export default function InputLoker() {
                       </div>
                       <div className="mb-2 mt-3">
                         <div className="row float-right">
-                          <button className="btn btn-success">
+                          <button className="btn btn-success" onClick={handleCreateLoker}>
                             <i className="fas fa-plus fa-fw"></i> Tambah
                           </button>
                         </div>
